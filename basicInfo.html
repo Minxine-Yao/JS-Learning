@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic information</title>
+</head>
+<body>
+<ul>
+    <li><a href="#">link-1</a></li>
+    <li><a href="#">link-2</a></li>
+    <li><a href="#">link-3</a></li>
+</ul>
+</body>
+<script>
+//    getElementsBy和querySelectorALl的区别，动态/静态
+    var ul = document.getElementsByTagName('ul')[0];
+    var lis= document.getElementsByTagName('li');
+//    每次添加都会更新lis的length，所以是个死循环
+//    for(var n=1;n<lis.length;n++){
+//        ul.appendChild(document.createElement('li'));
+//        console.log('CREATE A LI!');
+//    }
+
+//    setAttribute和getAttribute以及removeAttribute
+    ul.setAttribute('SEX','MALE');
+    console.log(ul.getAttribute('SEX'));
+    ul.removeAttribute('SEX');
+//    ul.setAttribute('SEX',null); 应当使用removeAttribute
+    console.log(ul.getAttribute('SEX'));
+
+//    prompt函数 - 出于安全/反钓鱼网站的考虑，无法改变弹出窗口的标题
+    var name = prompt('Input your name','NicholaJA');
+    console.log(name);
+//    confirm和alert
+    var OK = confirm('Are you sure to LEAVE?');
+    if(OK){
+        alert('Get Away!');
+    }else{
+        alert('Good Job!');
+    }
+</script>
+</html>
