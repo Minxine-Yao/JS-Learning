@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grammar and Types</title>
+</head>
+<body>
+</body>
+<script>
+//  undefined
+    //var a;
+    console.log(a);
+    var a = 5;
+    console.log(a);
+    var input;
+    if (input) {
+        console.log("Undefined equals True");
+    } else {
+        console.log("Undefined equals False");
+    }
+    console.log(input + 3);//Undefined -> NaN,NaN + 2 -> NaN
+//  变量提升 Variable hoisting
+    if (true) {
+        var x = 5;
+    }
+    console.log(x);//5
+    if (true) {
+        let y = 5;
+    }
+    //console.log(y); //y is not defined
+
+    //console.log(c);//c is not defined
+    //let c = 5;
+    //const c = 5;
+    
+//  函数提升 Function hoisting
+    Hoisting();
+    function Hoisting(){
+        console.log("Hello");
+    }
+    
+//  const变量
+    const OBJECT = {
+        "value": "Default value",
+        "name": "OBJ"
+    };
+    OBJECT.value = "Changed value";
+    if(OBJECT.value === "Default value"){
+        console.log("const对象的属性未被修改");
+    }else{
+        console.log("const对象的属性被修改了");
+    }
+
+//  null/Null/NULL
+    console.log(null);
+    //console.log(Null);//Null is not defined
+    //console.log(NULL);//NULL is not defined
+    
+//  数据类型转换
+    console.log('37' - 7); //30
+    console.log('37' + 7); //377
+    console.log(+'1.1'+(+'1.1')); //2.2
+    console.log(-'1.1'+(+'1.1')); //0
+    console.log(+'1.1'+( '1.1')); //1.11.1
+
+
+</script>
+</html>
