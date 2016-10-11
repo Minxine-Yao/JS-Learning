@@ -7,62 +7,106 @@
 <body>
 </body>
 <script>
-//  undefined
-    //var a;
-    console.log(a);
-    var a = 5;
-    console.log(a);
-    var input;
-    if (input) {
-        console.log("Undefined equals True");
-    } else {
-        console.log("Undefined equals False");
-    }
-    console.log(input + 3);//Undefined -> NaN,NaN + 2 -> NaN
-//  变量提升 Variable hoisting
-    if (true) {
-        var x = 5;
-    }
-    console.log(x);//5
-    if (true) {
-        let y = 5;
-    }
-    //console.log(y); //y is not defined
-
-    //console.log(c);//c is not defined
-    //let c = 5;
-    //const c = 5;
+    window.onload = function(){
+        //  undefined
+        //var a;
+        console.log(a);
+        var a = 5;
+        console.log(a);
+        var input;
+        if (input) {
+            console.log("Undefined equals True");
+        } else {
+            console.log("Undefined equals False");
+        }
+        console.log(input + 3);//Undefined -> NaN,NaN + 2 -> NaN
+        //  变量提升 Variable hoisting
+        if (true) {
+            var x = 5;
+        }
+        console.log(x);//5
+        if (true) {
+            let y = 5;
+        }
+        //console.log(y); //y is not defined
     
-//  函数提升 Function hoisting
-    Hoisting();
-    function Hoisting(){
-        console.log("Hello");
-    }
+        //console.log(c);//c is not defined
+        //let c = 5;
+        //const c = 5;
     
-//  const变量
-    const OBJECT = {
-        "value": "Default value",
-        "name": "OBJ"
-    };
-    OBJECT.value = "Changed value";
-    if(OBJECT.value === "Default value"){
-        console.log("const对象的属性未被修改");
-    }else{
-        console.log("const对象的属性被修改了");
-    }
-
-//  null/Null/NULL
-    console.log(null);
-    //console.log(Null);//Null is not defined
-    //console.log(NULL);//NULL is not defined
+        //  函数提升 Function hoisting
+        Hoisting();
+        function Hoisting(){
+            console.log("Hello");
+        }
     
-//  数据类型转换
-    console.log('37' - 7); //30
-    console.log('37' + 7); //377
-    console.log(+'1.1'+(+'1.1')); //2.2
-    console.log(-'1.1'+(+'1.1')); //0
-    console.log(+'1.1'+( '1.1')); //1.11.1
-
-
+        //  const变量
+        const OBJECT = {
+            "value": "Default value",
+            "name": "OBJ"
+        };
+        OBJECT.value = "Changed value";
+        if(OBJECT.value === "Default value"){
+            console.log("const对象的属性未被修改");
+        }else{
+            console.log("const对象的属性被修改了");
+        }
+    
+        //  null/Null/NULL
+        console.log(null);
+        //console.log(Null);//Null is not defined
+        //console.log(NULL);//NULL is not defined
+    
+        //  数据类型转换
+        console.log('37' - 7); //30
+        console.log('37' + 7); //377
+        console.log(+'1.1'+(+'1.1')); //2.2
+        console.log(-'1.1'+(+'1.1')); //0
+        console.log(+'1.1'+( '1.1')); //1.11.1
+    
+        //  数组字面量(Array Literals)
+        var arr = ["Item 0","Item 1",];
+        console.log("arr.length = " + arr.length); //arr.length = 2;
+        arr = ["Item 0","Item 1", , ];
+        console.log("arr.length = " + arr.length); //arr.length = 3;
+        arr = ["Item 0", , ,"Item 1"];
+        console.log("arr.length = " + arr.length); //arr.length = 4;
+        arr = ["Item 0",undefined,undefined,"Item 1"];
+        console.log("arr.length = " + arr.length); //arr.length = 4;
+    
+        //  整数字面值
+        var nine = 0b1001;
+        console.log(0b1001); //9
+        console.log(nine); //9
+        console.log(nine.toString(2)); //1001
+        
+        //  对象字面量
+        var obj = {
+            "name" : "Good Name",
+            sex : "Male",
+            "?" : "Question",
+            3 : "Three"
+        };
+        console.log(obj.name); //Good Name
+        console.log(obj["name"]); //Good Name
+        console.log(obj.sex); //Male
+        console.log(obj["sex"]); //Male
+        //console.log(obj.?); //Unexpected token ?
+        console.log(obj["?"]); //Question
+        //console.log(obj.3); //Error
+        console.log(obj["3"]); //Three
+        console.log(obj[3]); //Three
+        
+        //  Unicode转义序列
+        console.log("\u00A9 Southeast University");
+        console.log("\u00A9Southeast University"); //正常
+        console.log("\\"); //转义字符
+        console.log("\u005C"); //Unicode转义序列
+        if("\\" === "\u005C"){ //true
+            console.log("转义字符 = Unicode转义序列");
+        }else{
+            console.log("转义字符 != Unicode转义序列");
+        }
+    }
 </script>
 </html>
