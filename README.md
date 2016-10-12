@@ -23,3 +23,7 @@
 * 在Unicode字符后面不需要加空格来配合解析
 
 ## 流程控制和错误处理
+* `""` `" "` `"  "`等字符串均在判断式中均被识别为false，但是他们**互不相等**
+* Unicode转义字符空格被认为是false value
+* `finally`部分**始终会执行**并且返回的值是整个`try-catch-finally`流程的返回值(若该部分无返回值，则返回的是`catch`部分的值，显而易见的是，`throw`和`return`语句不可能都执行)
+* [Promise对象](http://es6.ruanyifeng.com/#docs/promise)：一种异步编程的解决方案

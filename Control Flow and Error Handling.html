@@ -8,7 +8,59 @@
 </body>
 <script>
     window.onload = function(){
-        
+//      if...else
+        if(!(NaN&&null&&""&&" "&&"  ")){
+            console.log("NaN null \"\" \" \" \"  \"均识别为false") //输出该条
+        }
+        if(""===" "){
+            console.log("\"\" === \" \"");
+        }else{
+            console.log("\"\" != \" \""); //输出该条
+        }
+        if("\u0020"){ //Unicode转义字符 空格
+            console.log("Unicode转义字符空格识别为false"); //输出该条
+        }else{
+            console.log("Unicode转义字符空格识别为true")
+        }
+
+//      对象操作语句
+        var person = {
+            name : "Shader",
+            sex : "Male",
+            age : 19
+        };
+        for(var info in person){
+            console.log(info + ":" + person[info]);
+        }
+//      异常处理
+        function UserException(message){
+            this.message = message;
+            this.name = "UserException";
+        }
+
+        function ExceptionHandle(){
+            try{
+                var throwAnException = true;
+                if(throwAnException){
+                    throw new UserException("I want to throw an user exception!");
+                    return "Value from section try";
+                }else{
+                    console.log("I don't want to throw an user exception!")
+                    return "Value from section try";
+                }
+            }catch(exception){
+                if(exception instanceof UserException){
+                    console.log(exception.name + ":" + exception.message); //成功输出
+                    return "Value from section catch";
+                }
+            }finally{
+                console.log("Arrived at section finally"); //成功输出
+                //return "Value from section finally";
+            }
+        }
+
+        //console.log(ExceptionHandle()); //finally部分有返回值：Value from section finally
+        console.log(ExceptionHandle()); //finally部分无返回值：Value from section catch
     }
 </script>
 </html>
