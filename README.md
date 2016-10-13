@@ -27,3 +27,11 @@
 * Unicode转义字符空格被认为是false value
 * `finally`部分**始终会执行**并且返回的值是整个`try-catch-finally`流程的返回值(若该部分无返回值，则返回的是`catch`部分的值，显而易见的是，`throw`和`return`语句不可能都执行)
 * [Promise对象](http://es6.ruanyifeng.com/#docs/promise)：一种异步编程的解决方案
+
+## 函数
+* 一个闭包必须保存它**可见域**中所有的参数和变量，每一次对外部函数的调用都实际上重新创建了一遍这个闭包。只有当inside的返回值没有再被引用时，内存才会被释放。
+* 产生命名冲突时，更近的作用域有更高的优先权。这是因为**作用域链**的第一个元素是最里面的作用域，最后一个元素是最外层的作用域。
+* 内嵌函数不会继承外部函数的this值（可用变量保存或者使用[箭头函数](http://www.csdn.net/article/2015-07-08/2825159-es6-in-depth-arrow-functions)）
+
+## 表达式和运算符
+* [解构赋值](http://www.csdn.net/article/2015-07-07/2825149-es6-in-depth-destructuring)

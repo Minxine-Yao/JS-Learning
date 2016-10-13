@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function</title>
+</head>
+<body>
+</body>
+<script>
+    window.onload = function(){
+
+//      闭包(Closures)
+        function outside(x){
+            function inside(y){
+                return x+y;
+            }
+            return inside;
+        }
+
+        add_Inside = outside(5); //5被保存下来
+        var sum = add_Inside(3);
+        console.log("sum: " + sum); //sum: 8
+        console.log("sum: " + outside(5)(3)); //sum: 8
+
+        var createPerson = function(name,sex){
+            //this.setName(name); //is not a function
+            //this.setSex(sex); //is not a function
+            return{
+                setName : function(newName){
+                    name = newName;
+                },
+                getName : function(){
+                    return name;
+                },
+                setSex : function(newSex){
+                    sex = newSex.toLowerCase();
+                },
+                getSex : function(){
+                    return sex;
+                },
+                displayInfo : function(){
+                    console.log("Name: " + this.getName() + "\n" + "Sex: " + this.getSex());
+                }
+            }
+        }
+
+        var Rebecca = createPerson("Rebecca","Male");
+        Rebecca.displayInfo();
+
+//      arguments对象
+        var displayArguments = function(){
+            var argumentsInfo = "";
+            for(var n=0;n < arguments.length - 1;n++){
+                argumentsInfo += arguments[n] + ",";
+            }
+            argumentsInfo += arguments[arguments.length - 1];
+            console.log(argumentsInfo);
+        }
+
+        displayArguments("Apple","one");
+        displayArguments("Apple","one");
+        displayArguments("Apple","juice","apple","three");
+    }
+</script>
+</html>

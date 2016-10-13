@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expressions and Operators</title>
+</head>
+<body>
+</body>
+<script>
+    window.onload = function(){
+//      解构(Destructuring)赋值
+        var foo = ["one","two","three"];
+        var [one,two,three] = foo;
+        console.log([one,two,three]); //["one","two","three"]
+
+//      一元运算符
+        if(delete foo[1]){
+            console.log(foo.length + ": " + foo); //3: one,,three
+            foo[1] = "TWO";
+            console.log(foo); //["one", "TWO", "three"]
+        }else{
+            console.log("Delete failed!");
+        }
+    }
+</script>
+</html>
