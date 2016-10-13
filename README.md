@@ -27,3 +27,6 @@
 * Unicode转义字符空格被认为是false value
 * `finally`部分**始终会执行**并且返回的值是整个`try-catch-finally`流程的返回值(若该部分无返回值，则返回的是`catch`部分的值，显而易见的是，`throw`和`return`语句不可能都执行)
 * [Promise对象](http://es6.ruanyifeng.com/#docs/promise)：一种异步编程的解决方案
+
+## 函数
+* 只有使用形如`function functionName(){}`的语法形式，才能在函数声明语句之前调用函数。
