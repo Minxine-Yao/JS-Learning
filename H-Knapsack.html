@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>H-Knapsack</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.onload = function(){
+        const dimension = 2;
+
+        var B = 0;
+        var v0 = new Array(dimension);
+        var k = new Array(dimension);
+        var c = new Array(dimension);
+        var ratio = new Array(dimension); //保存每次测试后的ALG/OPT
+
+        var solve = dimension===2 ? solve2 : solve3; //视维度不同调用不同的解函数
+        for(var i = 0;i<100;i++){
+            reCreateData();
+            var result = solve(B,v0,c,k);
+            ratio[i] = result.ratio;
+        }
+            ratio.sort();
+            console.log("Minimum ratio: " + ratio[0]);
+
+        function reCreateData(){
+            var B_max = 100;
+            var B_min = 50;
+            var B_range = B_max - B_min;
+            B = B_min + Math.round(Math.random()*B_range);
+
+            var v0_max = 30;
+            var v0_min = 1;
+            var v0_range = v0_max - v0_min;
+            for(var n = 0;n<dimension;n++){
+                v0[n] = (Math.random()*v0_range).toFixed(1);
+            }
+
+            var k_max = 10;
+            var k_min = 1;
+            var k_range = k_max - k_min;
+            for(var n = 0;n<dimension;n++){
+                k[n] = (Math.random()*k_range).toFixed(1);
+            }
+
+            var c_max = B / 2;
+            var c_min = 1;
+            var c_range = c_max - c_min;
+            for(var n = 0;n<dimension;n++){
+                c[n] = (Math.random()*c_range).toFixed(1);
+            }
+        }
+
+
+        function solve2(B,v0,k,c){
+            //打印基本信息
+            //console.log("B = "+B);
+            //for(n = 0;n < v0.length;n++){
+                //console.log("v"+(n+1)+"0 = "+v0[n]+",k"+(n+1)+" = "+k[n]+",c"+(n+1)+" = "+c[n]);
+            //}
+
+            var q_Single = new Array(); //单人完成时的质量
+            var xm = new Array(); //只选一个人最多能完成多少次
+
+            //  计算x_m
+            for(var n = 0;n<v0.length;n++){
+                xm[n] = Math.floor(B/c[n]);
+            }
+            //  计算单人完成的最高质量
+            for(var n = 0;n<v0.length;n++){
+                q_Single[n] = q(v0[n],k[n],xm[n]);
+            }
+            var qm_Single = 0;
+            var q_temp = 0;
+            for(var n = 0;n<q_Single.length;n++){
+                if(q_Single[n] >= q_temp){
+                    q_temp = q_Single[n];
+                    qm_Single = n;
+                }
+            }
+            //  计算最优情况
+            var q_Multi = new Array();
+            var x2 = new Array(); //最优情况下x2的值
+            for(var n = 0;n <= xm[0];n++){
+                for(var i = 0;i <= xm[1]; i++){
+                    if(i === xm[1]){
+                        q_Multi.push(q(v0[0],k[0],n) + q(v0[1],k[1],i));
+                        //console.log("x1 = "+n+",x2 = "+i+",q="+q_Multi[n]);
+                        x2[n] = i;
+                    }else if(((c[0]*n + c[1]*i)<=B)&&((c[0]*n + c[1]*(i+1))>B)){
+                        // 当前不超支，下一次超支，则当前为最大
+                        q_Multi.push(q(v0[0],k[0],n) + q(v0[1],k[1],i));
+                        //console.log("x1 = "+n+",x2 = "+i+",q="+q_Multi[n]);
+                        x2[n] = i;
+                        break;
+                    }
+                }
+            }
+            q_temp = 0;
+            var qm_Multi = 0; //最优情况下的x0的个数
+            for(var n=0;n < q_Multi.length;n++){
+                if(q_Multi[n] > q_temp){
+                    qm_Multi = n;
+                    q_temp = q_Multi[n];
+                }
+            }
+
+            //console.log("单人完成应当让"+(qm_Single+1)+"来完成");
+            //console.log("多人完成时x1 = "+qm_Multi+",x2 = "+x2[qm_Multi]);
+            ////console.log("ALG/OPT = " + parseFloat(q_Single[qm_Single-1]/q_Multi[qm_Multi]));
+            //console.log("ALG/OPT = " + parseFloat(q_Single[qm_Single-1]/q_Multi[qm_Multi]));
+            return {
+                x1 : qm_Multi,
+                x2 : x2[qm_Multi],
+                ALG : q_Single[qm_Single],
+                OPT : q_Multi[qm_Multi],
+                ratio : parseFloat(q_Single[qm_Single]/q_Multi[qm_Multi])
+            };
+
+        }
+
+
+        function solve3(B,v0,k,c){
+            var q_Single = new Array(); //单人完成时的质量
+            var xm = new Array(); //只选一个人最多能完成多少次
+
+            //  计算x_m
+            for(var n = 0;n<v0.length;n++){
+                xm[n] = (Math.floor(B/c[n]));
+            }
+            //  计算单人完成的最高质量
+            for(var n = 0;n<v0.length;n++){
+                q_Single[n] = (q(v0[n],k[n],xm[n]));
+            }
+            var qm_Single = 0; //单人完成最高质量的人的序号
+            var q_temp = 0;
+            for(var n = 0;n<q_Single.length;n++){
+                if(q_Single[n] >= q_temp){
+                    q_temp = q_Single[n];
+                    qm_Single = n;
+                }
+            }
+
+            //  计算多人完成的最高质量
+            var q_Multi = new Array(); //各种情况下的qm值
+            var xOther = new Array(); //各种情况下的除x0以外的x的值
+            for(var n = 0;n<=xm[0];n++){
+                var qOther = solve2(B - n*c[0],v0.slice(1),k.slice(1),c.slice(1));
+                q_Multi[n] = qOther.OPT + q(v0[0],k[0],n);
+                if(qOther.ratio > 1){
+                    console.log("B: " + (B - n*c[0]) + "v0: " + v0.slice(1) + "k: " + k.slice(1) + "c: " + c.slice(1));
+                    console.log(qOther);
+                }
+                xOther[n] = {
+                    x2 : qOther.x1,
+                    x3 : qOther.x2
+                };
+            }
+
+            q_temp = 0;
+            var qm_Multi = 0; //最优情况下的x0的个数
+            for(var n=0;n < q_Multi.length;n++){
+                if(q_Multi[n] > q_temp){
+                    qm_Multi = n;
+                    q_temp = q_Multi[n];
+                }
+            }
+
+            return{
+                x1 : qm_Multi,
+                x2 : xOther[qm_Multi].x2,
+                x3 : xOther[qm_Multi].x3,
+                ALG : q_Single[qm_Single],
+                OPT : q_Multi[qm_Multi],
+                ratio : q_Single[qm_Single]/q_Multi[qm_Multi]
+            };
+        }
+
+
+        function q(v0,k,x){
+            return (v0*x + parseFloat(k*x*(x-1))/2.0);
+        }
+    }
+</script>
+</html>
