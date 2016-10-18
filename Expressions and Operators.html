@@ -14,13 +14,55 @@
         console.log([one,two,three]); //["one","two","three"]
 
 //      一元运算符
-        if(delete foo[1]){
+        if(delete foo[1]){ //成功
             console.log(foo.length + ": " + foo); //3: one,,three
             foo[1] = "TWO";
             console.log(foo); //["one", "TWO", "three"]
         }else{
             console.log("Delete failed!");
         }
+        x = 45;
+        var y = 10;
+        let z = 15;
+        const w = 13;
+        console.log("删除全局变量x" + (delete x)); //true
+        console.log("删除使用var声明的变量y" + (delete y)); //false
+        console.log("删除使用let声明的变量z" + (delete z)); //false
+        console.log("删除使用const声明的变量w" + (delete w)); //false
+        w.size = 1;
+        console.log("删除const声明的变量w的size属性" + (delete w.size)); //成功
+        
+        console.log(typeof null); //object
+        w.wprop = 2;
+        y.yprop = 3;
+        var obj = {
+          oprop : 56
+        };
+        console.log(typeof (w.wprop)); //undefined
+        console.log(typeof (y.yprop)); //undefined
+        console.log(typeof (obj)); //object
+        console.log(typeof (obj.oprop)); //number
+        obj.oprop2 = "oprop2";
+        console.log(typeof obj.oprop2);
+        
+//      关系操作符 Relational Operators
+        //in propNameOrNumber in objectName
+        var OW = ["Genji","Pharah","Ana"];
+        console.log("Genji" in OW); //false
+        console.log(0 in OW); //true
+        console.log("sort" in OW); //true
+        var Genji = {
+            Shift : "s",
+            E : "e",
+            Q : "q",
+            V : "v"
+        };
+        console.log(1 in Genji); //false
+        console.log("Shift" in Genji); //true
+        console.log('s' in Genji); //true
+        //instanceof
+        var today = new Date();
+        console.log(today instanceof  Date); //true
     }
 </script>
 </html>

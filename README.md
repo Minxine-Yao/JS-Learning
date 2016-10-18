@@ -37,6 +37,8 @@
 
 ## 表达式和运算符
 * [解构赋值](http://www.csdn.net/article/2015-07-07/2825149-es6-in-depth-destructuring)
-
 > 2016.10.14: 今天调用js写的跑循环的代码调都快崩溃了，因为一直用的是js，所以也算everyday js了吧= =唉，以后再也不用js写这种程序了。\cry
+
+* 使用`var``let``const`声明的变量无法delete，全局变量和使用`const`声明的变量的属性可以
+* 对于属性值，`typeof`会返回属性**所包含的值**的类型
 
