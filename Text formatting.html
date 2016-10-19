@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text formatting</title>
+</head>
+<body>
+</body>
+<script>
+    window.onload = function(){
+        var s1 = "2 + 2";
+        var s2 = new String("2 + 2");
+        var s3 = new String(2 + 2);
+        console.log(s1); //2 + 2
+        console.log(s2); //String...
+        console.log(s3); //String
+        console.log(eval(s1)); //4
+        console.log(eval(s2)); //String...
+        console.log(eval(s3)); //String...
+        console.log("2 + 2".length); //5
+//      多行字符串
+        var multiline1 = "Line 1\nLine 2";
+        var multiline2 = `Line 1
+Line 2`;
+        console.log(multiline1);
+        console.log(multiline2);
+        console.log(multiline1 === multiline2); //true
+//      嵌入表达式
+        var a = 3;
+        var b = 5;
+        console.log(`a + b = ${a+b}`); //a + b = 8
+//      国际化
+        var today = new Date();
+        var USADateTime = new Intl.DateTimeFormat("en-US").format;
+        console.log(USADateTime);
+        console.log(USADateTime(today));
+
+    }
+</script>
+</html>

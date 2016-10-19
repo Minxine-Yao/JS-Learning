@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numbers and Dates</title>
+</head>
+<body>
+</body>
+<script>
+    window.onload = function(){
+//      数字
+        console.log(0B1001); //9
+        console.log(0B1001.toString(2)); //1001
+        console.log(011); //9
+        console.log(011.toString(8)); //11
+        console.log(0xFFFF); //65535
+        console.log(0xFFFF.toString(2)); //1111 1111 1111 1111
+        console.log(1E3); //1000
+//      日期
+        var today = new Date();
+        var chineseExam = new Date(2014,6,7,15,45,0,0);
+        var msPerday = 24 * 3600 * 1000;
+        var distance = Math.ceil(-(chineseExam.getTime() - today.getTime())/msPerday);
+        console.log("你距离人生的巅峰时刻已经过去了" + distance + "天");
+    }
+</script>
+</html>
