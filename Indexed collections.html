@@ -54,6 +54,15 @@
         //Array.forEach(li,item => {console.log(item.innerHTML)}); Error
         //Array.prototype.forEach.call("HELLO WORLD",chr => {console.log(chr)});
 
+        //ArrayBuffer、TypedArray、DataView
+        var buf = new ArrayBuffer(32); //单位字节
+        var dataView = new DataView(buf);
+        console.log(dataView.getUint8(0)); //0
+        var x1 = new Int32Array(buf);
+        x1[0] = 1;
+        var x2 = new Uint8Array(buf);
+        x2[0] = 2;
+        console.log(x1[0]); //2
 
     }
 </script>

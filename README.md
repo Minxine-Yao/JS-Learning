@@ -52,3 +52,4 @@
 * 数组的`forEach()`方法配合**箭头函数**和字符串的**潜入表达式**的便捷写法，hack！
 * 在数组定义时**省略的**元素不会再forEach遍历时列出，但是**手动赋值为undefined**的元素会被列出
 * 可以通过`Array.prototype.XXX.call`或者`[].XXX.call`将数组的方法运用到其它对象
+* [ArrayBuffer对象、Type的Array对象、DataView对象](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)是JS操作**二进制数据**的一个接口。
