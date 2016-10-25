@@ -46,10 +46,15 @@
 * 字符串字面值和字符串对象的不同
 * 语法糖，使用反勾号实现字符串的多行和**嵌入表达式**的便捷写法，简直酷
 
-## Indexed collections
+## Indexed Collections
 * 如果给数组操作符（方括号）的是一个**非整型数值**，那么将作为一个代表数组的对象的**属性**创建，而非作为数组的元素，可用`hasOwnProperty`来进行验证
 * 可以通过对数组的`length`属性进行赋值来对数组进行设置（可用于**清空**）
 * 数组的`forEach()`方法配合**箭头函数**和字符串的**潜入表达式**的便捷写法，hack！
 * 在数组定义时**省略的**元素不会再forEach遍历时列出，但是**手动赋值为undefined**的元素会被列出
 * 可以通过`Array.prototype.XXX.call`或者`[].XXX.call`将数组的方法运用到其它对象
 * [ArrayBuffer对象、Type的Array对象、DataView对象](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)是JS操作**二进制数据**的一个接口。
+
+## Keyed Collections
+* 使用**for-of**循环遍历`Map`对象和`Set`对象
+* WeakMap相对于普通的Map，也是键值对集合，只不过WeakMap的**key只能是非空对象**（non-null object）。WeakMap对它的key仅保持弱引用，也就是说它不阻止垃圾回收器回收它所引用的key。WeakMap最大的好处是可以**避免内存泄漏**。一个仅被WeakMap作为key而引用的对象，会被垃圾回收器回收掉。
+* Set和数组的相互转换（通过构造函数或者[扩展运算符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator)）

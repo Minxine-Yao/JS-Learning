@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyed Collection</title>
+</head>
+<body>
+</body>
+<script>
+    window.onload = function(){
+//      Map对象
+        var OW = new Map();
+        OW.set(1,"Genji"); //key,value
+        OW.set(2,"Pharah");
+        OW.set(3,"Sombra");
+        console.log(`Map's size:${OW.size}`); //3
+        console.log(`OW has sombra?${OW.has("Sombra")}`); //false
+        console.log(`OW has 3?${OW.has(3)}`); //true
+        console.log(OW.get(1)); //Genji
+        for(var [key,value] of OW){
+            console.log(key + ":" + value);
+        }
+//      Set对象
+        var A = new Set();
+        A.add(1);
+        A.add("One");
+        console.log(A.has("One")); //true
+        // 数组和集合的转换
+        var B = A;
+        var BArray = Array.from(B);
+        var C = [...A];
+        B = new Set([1,1,1,2,2,2]);
+        console.log(BArray); //[1,"one"]
+        console.log(B); //Set{1,2}
+        console.log(C); //[1,"One"]
+    }
+</script>
+</html>
