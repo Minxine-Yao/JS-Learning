@@ -49,8 +49,10 @@
         //将Array的方法运用到其它对象
         var li = document.querySelectorAll("li");
         console.log(li);
-        Array.prototype.forEach.call(li,item => {console.log(item.innerHTML)});
-        [].forEach.call(li,item => {console.log(item.innerHTML)});
+        Array.prototype.forEach.call(li,item => {console.log(item.innerHTML)}); // 1 \n\r 2 \n\r 3
+        [].forEach.call(li,item => {console.log(item.innerHTML)}); // 1 \n\r 2 \n\r 3
+        for(var item of li){console.log(item.innerHTML)}; // 1 \n\r 2 \n\r 3
+        for(var item in li){console.log(item.innerHTML)}; // 1 \n\r 2 \n\r 3
         //Array.forEach(li,item => {console.log(item.innerHTML)}); Error
         //Array.prototype.forEach.call("HELLO WORLD",chr => {console.log(chr)});
 

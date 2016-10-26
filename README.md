@@ -58,3 +58,7 @@
 * 使用**for-of**循环遍历`Map`对象和`Set`对象
 * WeakMap相对于普通的Map，也是键值对集合，只不过WeakMap的**key只能是非空对象**（non-null object）。WeakMap对它的key仅保持弱引用，也就是说它不阻止垃圾回收器回收它所引用的key。WeakMap最大的好处是可以**避免内存泄漏**。一个仅被WeakMap作为key而引用的对象，会被垃圾回收器回收掉。
 * Set和数组的相互转换（通过构造函数或者[扩展运算符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator)）
+
+## Object
+* 对象中未赋值的属性值为undefined，而非null
+* JS的对象属性也可以通过**方括号**访问或者设置，对象有时候也被叫做**关联数组**，因为每个属性都有一个用于访问他的字符串值。
