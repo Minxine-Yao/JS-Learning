@@ -12,6 +12,26 @@
         OW.Genji = "源氏";
         OW.Ana = "安娜";
         console.log(OW.Pharah); //undefined
+//      使用构造函数创建对象
+        function Hero(name,sex,player = "unkonwn"){
+            this.name = name;
+            this.sex = sex;
+            this.player = player;
+            this.displayInfo = function(){
+                var result = "";
+                for(var i in this){
+                    if(this.hasOwnProperty(i)&&(typeof(this[i])==="string")){
+                        result += i + "," + this[i] + "/";
+                    }
+                }
+                return result;
+            }
+        }
+        var Genji = new Hero("Genji","Male","Roy");
+        var Anna = new Hero("Anna","Female");
+        //console.log(Object.keys(Genji)); //["name", "sex", "player", "displayInfo"]
+        console.log(Genji.displayInfo()); //name,Genji/sex,Male/player,Roy/
+        console.log(Anna.displayInfo()); //name,Anna/sex,Female/player,unkonwn/
     }
 </script>
 </html>
