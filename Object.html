@@ -32,6 +32,17 @@
         //console.log(Object.keys(Genji)); //["name", "sex", "player", "displayInfo"]
         console.log(Genji.displayInfo()); //name,Genji/sex,Male/player,Roy/
         console.log(Anna.displayInfo()); //name,Anna/sex,Female/player,unkonwn/
+//      inheritance
+        function Human(name,sex){
+            this.name = name;
+            this.sex = sex;
+        }
+        function Wolverine(){
+            this.immortal = true;
+        }
+        Wolverine.prototype = new Human("Logan","Man");
+        var Xman = new Wolverine();
+        console.log(Xman.name); //Logan
     }
 </script>
 </html>
