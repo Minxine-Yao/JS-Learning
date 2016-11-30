@@ -49,6 +49,17 @@
 //        console.log(Genji.getName);
 //        Genji.setName = "Hasaki";
 //        console.log(Genji.getName);
+//      inheritance
+        function Human(name,sex){
+            this.name = name;
+            this.sex = sex;
+        }
+        function Wolverine(){
+            this.immortal = true;
+        }
+        Wolverine.prototype = new Human("Logan","Man");
+        var Xman = new Wolverine();
+        console.log(Xman.name); //Logan
     }
 </script>
 </html>
