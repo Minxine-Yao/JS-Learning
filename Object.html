@@ -26,12 +26,29 @@
                 }
                 return result;
             }
+//            get getName(){
+//                return  this.name;
+//            }
+//            set setName(name){
+//                this.name = name;
+//            }
         }
         var Genji = new Hero("Genji","Male","Roy");
         var Anna = new Hero("Anna","Female");
         //console.log(Object.keys(Genji)); //["name", "sex", "player", "displayInfo"]
         console.log(Genji.displayInfo()); //name,Genji/sex,Male/player,Roy/
         console.log(Anna.displayInfo()); //name,Anna/sex,Female/player,unkonwn/
+
+//      为对象类型定义属性
+        Hero.prototype.company = "BW";
+        console.log(Genji.company); //BW
+        Hero.prototype.displayCompany = function(){
+            console.log("BW");
+        }
+        Genji.displayCompany(); //BW
+//        console.log(Genji.getName);
+//        Genji.setName = "Hasaki";
+//        console.log(Genji.getName);
     }
 </script>
 </html>
