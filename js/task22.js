@@ -75,10 +75,10 @@ function arrive(node){
 }
 function leave(node){
 	var curDiv = document.getElementById(node.id);	
-	clk += 750;
 	var t = setTimeout(function(){
 		curDiv.style.backgroundColor = "white";
 	},clk);
+	clk += 750;
 }
 function createDiv(id,parentName){
 	var parDiv = document.getElementById(parentName);
@@ -94,7 +94,13 @@ var clk = 0;
 
 window.onload = function(){
 	createTreeByMe();
-	findNode(root,"d",visit,arrive,leave);
+	var searchButton = document.getElementById("search");
+	searchButton.onclick = function(e){
+		var div = document.getElementById("d");
+		d.style.backgroundColor = "white";
+		findNode(root,"d",visit,arrive,leave);
+		clk = 0;
+	}
 }
 
 function createTreeByMe(){

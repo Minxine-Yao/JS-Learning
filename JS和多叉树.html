@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>JS和树</title>
-	<script type="text/javascript" src="js/task22.js"></script>
+	<title>JS和多叉树</title>
+	<script type="text/javascript" src="js/task23.js"></script>
 </head>
 <body>
-	<button id="search">查询</button>
+	<div id="input-line">	
+		<input type="text" id="input-id">
+		<button id="search">查询</button>
+	</div>
 	<div id="root" class="node">root</div>
 </body>
 <style>
@@ -14,11 +17,18 @@
 		margin: 0;
 		padding: 0;
 	}
+	#input-line{
+		margin: 10px;
+	}
+	#input-id{
+		height: 30px;
+		display: inline-block;
+	}
 	button{
-		display: block;
+		display: inline-block;
 		margin: 10px;
 		width: 50px;	
-		height: 30px;	
+		height: 25px;	
 	}
 	.node{
 		float: left;
