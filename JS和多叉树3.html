@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS和多叉树</title>
+	<script type="text/javascript" src="js/task25.js"></script>
+</head>
+<body>
+	<div id="input-line">	
+		<input type="text" id="input-id">
+		<button id="search">查询</button>
+		<button id="add">添加</button>
+		<button id="delete">删除</button>
+	</div>
+	<div id="tree"></div>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#input-line{
+		margin: 10px;
+	}
+	#input-id{
+		height: 30px;
+		display: inline-block;
+	}
+	button{
+		display: inline-block;
+		margin: 10px;
+		width: 50px;	
+		height: 25px;	
+	}
+	.node{
+		cursor: pointer;
+		/*float: left;*/
+		max-width: 50vw;
+		border: 2px solid black;
+		background: white;
+		padding: 10px;
+		/*margin: 10px;*/
+		transition: background 0.5s;
+	}
+	#root{
+		margin-left: 10px;
+	}
+</style>
+</html>
