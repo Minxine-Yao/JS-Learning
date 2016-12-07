@@ -6,9 +6,10 @@ const targetHeight = 20;
 var englishNum = ["zero","one","two","three","four","five",
 		 	   "six","seven","eight","nine","ten"];
 var direction = ["Top","Right","Bottom","Left"];
-// var activeDiv = document.createElement("div");
+var activeDiv = document.createElement("div");
 function init(){
-	// 创建活动的div
+
+	// 创建“棋盘” 
 	var grids = document.getElementById("grids");
 	grids.style.width = (targetWidth + gridSize*gridWidth)+"px";
 	grids.style.height = (targetHeight + gridSize*gridHeight)+"px";
@@ -66,42 +67,60 @@ function Square(id,x,y){
 	this.id = id;
 	this.lastX = x;
 	this.lastY = y;
+	this.movX = 0;
+	this.movY = 0;
 	this.x = x;
 	this.y = y;
 	this.lastHead = 0;
-	this.rotateDir = 1; //1代表顺时针，-1代表逆时针
+	this.rotateDir = 1; //1代表顺时针，-1代表逆时针.0代表未旋转
+	this.rotateAngle = 0; //总的转过的角度
 	this.head = 0; //0代表目前头朝上
 	this.repaint = function(){
-		// 清除上一步
-		var lastDiv = document.getElementById(`${englishNum[this.lastY]}-${englishNum[this.lastX]}`);
-		var tempDiv = lastDiv.cloneNode(true);
-		lastDiv.className = "grid";
-		lastDiv.style.backgroundColor = "white";
-		lastDiv.style[`border${direction[this.lastHead]}`] = "none";
-		lastDiv.style.borderRight = "1px solid rgb(200,200,200)";
-		lastDiv.style.borderBottom = "1px solid rgb(200,200,200)";
-		if(this.lastX===1) //最左侧的格子
-			lastDiv.style.borderLeft = "2px solid black";
-		if(this.lastY===1) //最上侧的格子
-			lastDiv.style.borderTop = "2px solid black";
-		if(this.lastX===gridSize) //最右侧的格子
-			lastDiv.style.borderRight = "2px solid black";
-		if(this.lastY===gridSize) //最下侧的格子
-			lastDiv.style.borderBottom = "2px solid black";
-		// 播放动画
-		var grids = document.getElementById("grids")
-		// grids.appendChild(tempDiv);
-		var div = document.getElementById(`${englishNum[this.y]}-${englishNum[this.x]}`);
-		var head = this.head;
-			// 绘制下一步
-		// grids.removeChild(tempDiv);
-		div.style.backgroundColor = "red";
-		div.style[`border${direction[head]}`] = "10px solid blue";
+		this.rotateAngle += 90*(this.head - this.lastHead);
+		if(this.rotateDir === 1){
+			this.head = this.head % 4
+		}else if(this.rotateDir === -1){
+			this.head = (this.head < 0) ? (this.head + 3) : (this.head - 1)
+		}
+		// 由于rotate后div的坐标轴也变动，故要再计算实际的移动距离
+		var rotateTime = ((this.rotateAngle % 360)/90 + this.rotateDir)%4;
+		console.log(rotateTime);
+		// var deltaX = (this.x-this.lastX)*gridWidth;
+		// var deltaY = (this.y-this.lastY)*gridHeight;
+		// if(rotateTime === 0){
+		// 	this.movX = deltaX;
+		// 	this.movY = deltaY;
+		// }else if(rotateTime === 1){
+		// 	this.movX = deltaY;
+		// 	this.movY = -1*deltaX;
+		// }else if(rotateTime === 2){
+		// 	this.movX = -1*deltaX;
+		// 	this.movY = -1*deltaY;
+		// }else if(rotateTime === 3){
+		// 	this.movX = -1*deltaY;
+		// 	this.movY = deltaX;
+		// }
+		// console.log(`rotateAngle:${this.rotateAngle},deltaX/Y ${deltaX}/${deltaY}`);
+		activeDiv.style.transform = `rotate(${this.rotateAngle}deg)`;
+		var curPos = toPx(this.x - 1,this.y - 1);
+		activeDiv.style.left = curPos.x + "px";
+		activeDiv.style.top = curPos.y + "px";
 	};
-	this.repaint();
+
+	// 创建活动的div
+	activeDiv.className = "active";
+	activeDiv.style.width = gridWidth+"px";
+	activeDiv.style.height = gridHeight+"px";
+	activeDiv.style.left = (targetWidth+(this.x - 1)*gridWidth)+"px";
+	activeDiv.style.top = (targetHeight+(this.y - 1)*gridHeight)+"px";
+	activeDiv.style.backgroundColor = "blue";
+	activeDiv.style["border"+direction[this.head]] = "12px solid red";
+	document.getElementById("grids").appendChild(activeDiv);
+
 	this.moveForward = function(distance){
 		var destX = this.x;
 		var destY = this.y;
+		this.rotateDir = 0;
 		if(this.head===0) destY-=distance; //向上移动
 		if(this.head===1) destX+=distance; //向右
 		if(this.head===2) destY+=distance; //向下
@@ -124,13 +143,17 @@ function Square(id,x,y){
 		if(direction==="RIG") turnTo = 1; //转向右方
 		if(direction==="BOT") turnTo = 2; //转向下方
 		if(direction==="LEF") turnTo = 3; //转向左方
-		this.head = turnTo;
+		this.rotateDir = 1;
+		turnTo = (turnTo >= this.lastHead) ? turnTo : 4 + turnTo;
+		for(var n = 0;n < turnTo - this.lastHead;n++)
+			this.rotate("RIG");
 		this.moveForward(1);
-		this.repaint();
 	};
 	this.translate = function(direction){
 		// 平移
+		this.lastHead = this.head;
 		direction = direction.toUpperCase().trim();
+		this.rotateDir = 0;
 		var destX = this.x;
 		var destY = this.y;
 		if(direction==="TOP") destY-=1; //向上移动
@@ -152,14 +175,18 @@ function Square(id,x,y){
 		rotateType = rotateType.toUpperCase().trim();
 		if(rotateType === "RIG"){
 			this.rotateDir = 1;
-			this.head = (this.head+1)%4;
+			// this.head = (this.head+1)%4;
+			this.head++;
 		}
 		if(rotateType === "LEF"){
 			this.rotateDir = -1;
-			this.head = (this.head-1 < 0) ? (this.head + 3) : (this.head - 1);	
+			// this.head = (this.head-1 < 0) ? (this.head + 3) : (this.head - 1);	
+			this.head--;
 		} 
 		if(rotateType === "BAC"){
-			this.head = (this.head+2)%4;	
+			// this.head = (this.head+2)%4;	
+			this.rotate("RIG");
+			this.rotate("RIG");
 		} 
 		this.repaint();
 	};
@@ -175,6 +202,14 @@ function Square(id,x,y){
 
 	};
 }
+
+function toPx(xNum,yNum){
+	return {
+		x : targetWidth+xNum*gridWidth,
+		y : targetHeight+yNum*gridHeight
+	};
+}
+
 window.onload = function(){
 	init();
 	// 创建活动的div

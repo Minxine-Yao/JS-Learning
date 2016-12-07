@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>听指令的小方块1</title>
-	<script type="text/javascript" src="js/task33.js"></script>
+	<title>听指令的小方块独立div版</title>
+	<script type="text/javascript" src="js/task33-2.js"></script>
 </head>
 <body>
 	<div id="grids"></div>
@@ -20,7 +20,9 @@
 	div{float: left;}
 	#grids{float: none;}
 	.active{
-		transition: transform 1s;
+		box-sizing: border-box;
+		position: absolute;
+		transition: all 1s;
 	}
 	.grid{box-sizing: border-box;}
 	#control{
