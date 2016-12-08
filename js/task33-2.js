@@ -83,8 +83,8 @@ function Square(id,x,y){
 			this.head = (this.head < 0) ? (this.head + 3) : (this.head - 1)
 		}
 		// 由于rotate后div的坐标轴也变动，故要再计算实际的移动距离
-		var rotateTime = ((this.rotateAngle % 360)/90 + this.rotateDir)%4;
-		console.log(rotateTime);
+		// var rotateTime = ((this.rotateAngle % 360)/90 + this.rotateDir)%4;
+		// console.log(rotateTime);
 		// var deltaX = (this.x-this.lastX)*gridWidth;
 		// var deltaY = (this.y-this.lastY)*gridHeight;
 		// if(rotateTime === 0){
@@ -118,6 +118,7 @@ function Square(id,x,y){
 	document.getElementById("grids").appendChild(activeDiv);
 
 	this.moveForward = function(distance){
+		this.lastHead = this.head;
 		var destX = this.x;
 		var destY = this.y;
 		this.rotateDir = 0;
@@ -140,13 +141,16 @@ function Square(id,x,y){
 		var turnTo;
 		this.lastHead = this.head;
 		if(direction==="TOP") turnTo = 0; //转向上方
-		if(direction==="RIG") turnTo = 1; //转向右方
-		if(direction==="BOT") turnTo = 2; //转向下方
-		if(direction==="LEF") turnTo = 3; //转向左方
-		this.rotateDir = 1;
-		turnTo = (turnTo >= this.lastHead) ? turnTo : 4 + turnTo;
-		for(var n = 0;n < turnTo - this.lastHead;n++)
+		else if(direction==="RIG") turnTo = 1; //转向右方
+		else if(direction==="BOT") turnTo = 2; //转向下方
+		else if(direction==="LEF") turnTo = 3; //转向左方
+		// this.rotateDir = 1;
+		var rotateTime = (turnTo >= this.lastHead) ? (turnTo - this.lastHead) : 4 + (turnTo - this.lastHead);
+		console.log(rotateTime);
+		for(var n = 0;n < rotateTime;n++)
 			this.rotate("RIG");
+		// console.log(this.lastHead);
+		// console.log(this.head);
 		this.moveForward(1);
 	};
 	this.translate = function(direction){
@@ -178,15 +182,16 @@ function Square(id,x,y){
 			// this.head = (this.head+1)%4;
 			this.head++;
 		}
-		if(rotateType === "LEF"){
+		else if(rotateType === "LEF"){
 			this.rotateDir = -1;
 			// this.head = (this.head-1 < 0) ? (this.head + 3) : (this.head - 1);	
 			this.head--;
 		} 
-		if(rotateType === "BAC"){
+		else if(rotateType === "BAC"){
 			// this.head = (this.head+2)%4;	
 			this.rotate("RIG");
 			this.rotate("RIG");
+			return;
 		} 
 		this.repaint();
 	};
