@@ -78,3 +78,5 @@
 
 * setTimeout需要用clk+=step的样式来保证执行的顺序，而非都用clk，则同时执行。
 * 若为父元素和子元素都设置了onclick，则在点击子元素时，父元素的处理函数会在子元素之后执行（大概是因为click的区域既属于子元素也属于父元素，只不过子元素在顶层，但这只能决定onclick的调用顺序），为了避免这样情况的发生，可以使用`stopPropagation`函数来**阻止事件的继续传播**。
+* cloneNode()有可选参数，true为深度克隆，会克隆子节点，false不会克隆子节点（默认）。
+* getBoundingRect()、window.pageXOffset、window.pageYOffset、onscroll事件（MDN是个好东西）。
