@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮出层</title>
+	<script type="text/javascript" src = js/task37.js></script>
+</head>
+<body>
+<div class="mask"></div>
+<div class="float-out-div">
+	<div class="fod-title">这是一个浮出层</div>
+	<div class="fod-container">这是一个浮出层
+		<div class="fod-button-container">
+			<button class="fod-button">确定</button>
+			<button class="fod-button">取消</button>
+		</div>
+	</div>
+</div>
+<button class="create-float-out-div">弹出浮出层窗口</button>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.float-out-div{
+		display: none;
+		width: 400px;
+		height: 200px;
+		border: 1px solid black;
+		position: fixed;
+		top: calc(50vh - 100px);
+		left: calc(50vw - 200px);
+		font-family: Microsoft YaHei,sans-serif;
+		/*z-index: 100;*/
+	}
+	.fod-title{
+		box-sizing: border-box;
+		width: 100%;
+		height: 20%;
+		background: royalblue;
+		color: white;
+		padding: 8px;
+	}
+	.fod-container{
+		box-sizing: border-box;
+		width: 100%;
+		height: 80%;
+		padding: 8px;
+		background-color: white;
+	}
+	.fod-button-container{
+		width: 60%;
+		height: 20%;
+		position: absolute;
+		right: 8px;
+		bottom: 8px;
+	}
+	.fod-button{
+		width: calc(50% - 8px);
+		height: 100%;
+		float: left;
+		margin-left: 8px;
+		background-color: royalblue;
+		color: white;
+		border: none;
+		font-family: Microsoft YaHei,sans-serif;
+	}
+	.fod-button:hover{
+		background-color: orange;
+		cursor: pointer;
+	}
+	.mask{
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0,0,0,0.7);
+		position: fixed;
+		display: none;
+		/*z-index: 99;*/
+	}
+</style>
+</html>

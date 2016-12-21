@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UI-排序表格</title>
+	<script src="js/task38.js" type="text/javascript"></script>
+</head>
+<body>
+	<table class="sortable-table">
+		<tr>
+			<th>姓名</th>
+			<th class="sortable-table-item">语文
+<!-- 				<div class="sort-icon">
+					<div></div>
+					<div></div>
+				</div>
+ -->			</th>
+			<th class="sortable-table-item">数学</th>
+			<th class="sortable-table-item">英语</th>
+			<th class="sortable-table-item">总分</th>
+		</tr>
+		<tr>
+			<td>Genji</td>
+			<td>80</td>
+			<td>90</td>
+			<td>70</td>
+			<td>240</td>
+		</tr>
+		<tr>
+			<td>Pharah</td>
+			<td>90</td>
+			<td>60</td>
+			<td>80</td>
+			<td>240</td>
+		</tr>
+		<tr>
+			<td>Hanzo</td>
+			<td>60</td>
+			<td>100</td>
+			<td>70</td>
+			<td>230</td>
+		</tr>
+	</table>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.sortable-table{
+		font-family: Microsoft YaHei,sans-serif;
+		font-size: 20px;
+		border-spacing: 0;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.sortable-table th{
+		width: 100px;
+		height: 55px;
+		border: 1px solid rgb(150,150,150);
+		background-color: royalblue;
+		color: white;
+	}
+	.sortable-table td{
+		width: 100px;
+		height: 55px;
+		border: 1px solid rgb(150,150,150);
+	}
+
+	.sortable-table-item{
+		position: relative;
+	}
+	.sortable-table-item:hover{
+		cursor: pointer;
+		background-color: orange;
+	}
+	.sort-icon,.sort-cion div{
+		display: inline-block;
+	}
+	.sort-icon{
+		height: 80%;
+		width: 25%;
+		position: absolute;
+		right: 0;
+		top: 10%;
+	}
+	.sort-icon > div{
+		width: 0;
+		height: 0;
+		margin-left: calc(50% - 7px);
+		margin-top: calc((100% - 14px) / 2);
+	}
+	.sort-icon > div:first-child{
+		border-bottom: 7px solid white;
+		border-top: 7px solid transparent;
+		border-right: 7px solid transparent;
+		border-left: 7px solid transparent;
+		/*margin-bottom: calc(100% - 40px);*/
+	}
+	.sort-icon > div:last-child{
+		border-top: 7px solid white;
+		border-right: 7px solid transparent;
+		border-bottom: 7px solid transparent;
+		border-left: 7px solid transparent;
+
+	}
+</style>
+</html>

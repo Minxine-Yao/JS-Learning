@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UI-冻结首行表格</title>
+	<script src="js/task39.js" type="text/javascript"></script>
+</head>
+<body>
+	<table class="frozen-first-line-table">
+		<tr>
+			<th>姓名</th>
+			<th>语文</th>
+			<th>数学</th>
+			<th>英语</th>
+			<th>总分</th>
+		</tr>
+		<tr>
+			<td>Genji</td>
+			<td>80</td>
+			<td>90</td>
+			<td>70</td>
+			<td>240</td>
+		</tr>
+		<tr>
+			<td>Pharah</td>
+			<td>90</td>
+			<td>60</td>
+			<td>80</td>
+			<td>240</td>
+		</tr>
+		<tr>
+			<td>Hanzo</td>
+			<td>60</td>
+			<td>100</td>
+			<td>70</td>
+			<td>230</td>
+		</tr>
+	</table>
+	<div id="empty-div"></div>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#empty-div{
+		width: 20px;
+		height: 100vh;
+	}
+	.frozen-first-line-table{
+		font-family: Microsoft YaHei,sans-serif;
+		font-size: 20px;
+		border-spacing: 0;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.frozen-first-line-table th{
+		width: 100px;
+		height: 55px;
+		border: 1px solid rgb(150,150,150);
+		background-color: royalblue;
+		color: white;
+	}
+	.frozen-first-line-table td{
+		width: 100px;
+		height: 55px;
+		border: 1px solid rgb(150,150,150);
+	}
+</style>
+</html>
