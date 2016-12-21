@@ -6,7 +6,8 @@
 	<script src="js/task39.js" type="text/javascript"></script>
 </head>
 <body>
-	<table class="frozen-first-line-table">
+	<div class="empty-div"></div>
+	<table class="frozen-head-table">
 		<tr>
 			<th>姓名</th>
 			<th>语文</th>
@@ -36,32 +37,32 @@
 			<td>230</td>
 		</tr>
 	</table>
-	<div id="empty-div"></div>
+	<div class="empty-div"></div>
 </body>
 <style>
 	*{
 		margin: 0;
 		padding: 0;
 	}
-	#empty-div{
+	.empty-div{
 		width: 20px;
-		height: 100vh;
+		height: 120vh;
 	}
-	.frozen-first-line-table{
+	.frozen-head-table,.temp-fh-table{
 		font-family: Microsoft YaHei,sans-serif;
 		font-size: 20px;
 		border-spacing: 0;
 		border-collapse: collapse;
 		text-align: center;
 	}
-	.frozen-first-line-table th{
+	.frozen-head-table th,.temp-fh-table th{
 		width: 100px;
 		height: 55px;
 		border: 1px solid rgb(150,150,150);
 		background-color: royalblue;
 		color: white;
 	}
-	.frozen-first-line-table td{
+	.frozen-head-table td{
 		width: 100px;
 		height: 55px;
 		border: 1px solid rgb(150,150,150);
