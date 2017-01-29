@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UI-日历</title>
+	<script src="js/task40.js"></script>
+</head>
+<body>
+	<div class="calendar"></div>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.calendar{
+		margin: 10px;
+		width: 300px;
+		/*height: 300px;*/
+		position: relative;
+		font-family: Microsoft YaHei,sans-serif;
+	}
+	.calendar-selection-line{
+		width: 100%;
+		height: 30px;
+		background-color: rgb(238,238,238);
+		border-radius: 8px;
+		margin-bottom: 5px;
+	}
+	.calendar-icon{
+		height: 15px;
+		width: 15px;
+		padding: 6.5px;
+		display: inline-block;
+		float: left;
+		border-bottom-left-radius: 8px;
+		border-top-left-radius: 8px;
+		border: 1px solid rgb(231,231,231);
+	}
+	.calendar-icon:hover{
+		cursor: pointer;
+	}
+	.calendar-selection-line > input{
+		width: 270px;
+		height: 30px;
+		box-sizing: border-box;
+		float: left;
+		border-bottom-right-radius: 8px;
+		border-top-right-radius: 8px;
+		outline: none;
+		border: 1px solid rgb(231,231,231);
+		padding-left: 10px;
+	}
+	.calendar-selection-line > input:focus{
+		border: 1px solid rgb(101,173,231);
+		box-shadow: 0px 0 10px rgb(228,235,241);
+	}
+	.calendar-display{
+		width: 100%;
+		position: absolute;
+		left: 30px;
+		top: 35px;
+		border: 1px solid rgb(198,27,1);
+		box-shadow: 0px 0 20px rgb(228,235,241);
+		display: none;
+	}
+	.calendar-selection{
+		width: 100%;
+		height: 45px;
+		display: inline-block;
+		text-align: center;
+		/*vertical-align: center;*/
+		background: rgb(198,27,1);
+	}
+	.calendar-date{
+		width: 100%;
+		height: 255px;
+		/*border: 1px solid rgb(198,27,1);*/
+
+	}
+	.calendar-month,.calendar-year{
+		display: inline-block;
+		height: 50%;
+		position: relative;
+		top: 25%;
+	}
+	.calendar-last-month,.calendar-next-month{
+		width: 0;
+		height: 0;
+		position: absolute;
+		border-left: 15px solid transparent;
+		border-right: 15px solid transparent;
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		background-color: transparent;
+		outline: none;
+	}
+	.calendar-last-month{
+		left: 2px;
+		top: 12.5px;
+		border-right-color: white;
+	}
+	.calendar-last-month:hover{
+		cursor: pointer;
+		border-right-color: royalblue;
+	}
+	.calendar-next-month{
+		right: 2px;
+		top: 12.5px;
+		border-left-color: white;
+	}
+	.calendar-next-month:hover{
+		cursor: pointer;
+		border-left-color: royalblue;
+	}
+	.calendar-date{
+		text-align: center;
+	}
+	.calendar-date th{
+		font-weight: normal;
+	}
+	.calendar-date td{
+		cursor: pointer;
+		transition: all 0.3s;
+	}
+	.calendar-date-selected{
+		border-radius: 4px;
+		background-color: rgb(47,125,194);
+		color: white;
+	}
+	.calendar-date-today{
+		border-radius: 4px;
+		background-color: rgb(198,27,1);
+		color: white;
+	}
+	.calendar-date-temp-selected{
+		background-color: rgba(47,125,194,0.1);
+	}
+	@keyframes blink{
+		0%{background-color: rgba(47,125,194,1.0);}
+		65%{background-color: rgba(47,125,194,0.1);}
+		100%{background-color: rgba(47,125,194,1.0);}
+	}
+	.calendar-date-blink-selected{
+		animation: 1.5s blink ease-in infinite;
+	}
+</style>
+</html>
