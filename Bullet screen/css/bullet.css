@@ -1,0 +1,23 @@
+/*弹幕文字的样式*/
+.yellow{color: yellowgreen;}
+.green{color: lightgreen;}
+.red{color: indianred;}
+.blue{color: royalblue;}
+.orange{color: orange;}
+
+@keyframes flow{
+    0%{right: 0;}
+    100%{right: 97.5vw;}
+}
+
+#screen{
+    position: relative;
+    overflow: hidden;
+}
+.word{
+    position: absolute;
+    right: 97.5vw;
+    white-space: nowrap; /*为了弹幕离开屏幕时不出现换行*/
+    animation: flow 10s forwards;
+    animation-timing-function: linear;
+}

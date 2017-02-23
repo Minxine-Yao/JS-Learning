@@ -1,0 +1,78 @@
+/*demo页面的布局和基本样式*/
+*{
+    margin: 0;
+    padding: 0;
+}
+#screen{
+    width: 95vw;
+    height: 500px;
+    margin-top: 60px;
+    margin-left: 2.5vw;
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+}
+#color-selection,#input-container{
+    display: inline-block;
+    margin-top: 50px;
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+}
+#color-selection > div{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 30px;
+    transition:0.2s all;
+}
+#color-selection > div:first-child{
+    margin-left: 0;
+}
+#color-selection > div:hover{
+    cursor: pointer;
+    border: 1px solid rgb(228,235,241);
+    box-shadow: 0 0 10px gray;
+}
+
+#yellow{background: yellowgreen;}
+#green{background: lightgreen;}
+#red{background: indianred;}
+#blue{background: royalblue;}
+#orange{background: orange;}
+.color-selected{
+    border: 1px solid rgb(228,235,241);
+    box-shadow: 0 0 10px gray;
+}
+
+#input-words{
+    /*height: 35px;*/
+    width: 320px;
+    border: 1px solid #F1F1F1;
+    padding: 3px;
+    padding-left: 6px;
+    margin-bottom: 6px;
+}
+#input-words:focus{
+    border-color: white;
+    box-shadow: 0 0 5px rgb(228,235,241);
+}
+button{
+    border-radius: 8px;
+    /*height: 35px;*/
+    width: 60px;
+    background: transparent;
+    color: royalblue;
+    border: 1px solid royalblue;
+    transition: 0.1s all;
+}
+button:hover{
+    cursor: pointer;
+    background: royalblue;
+    color: white;
+    outline: none;
+}
+button:focus{
+    outline: none;
+}
