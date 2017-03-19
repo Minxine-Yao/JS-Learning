@@ -9,3 +9,7 @@
 - [x] console.log(document.querySelector("html") === document.documentElement
 - [x] width: 100% !== width: 100vw
 
+
+- [x] `addEventListener("event",function,useCapture)`[Answer on stackoverflow](http://stackoverflow.com/questions/5657292/why-is-false-used-after-this-simple-addeventlistener-function) 
+- [x] `addEventerListern ` and `attachEvent` [Answer on stackoverflow](http://stackoverflow.com/questions/2657182/correct-usage-of-addeventlistener-attachevent) 
+- [x] `event.target` and `event.currentTarget` and `this` 
