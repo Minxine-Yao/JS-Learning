@@ -13,3 +13,8 @@
 - [x] `addEventListener("event",function,useCapture)`[Answer on stackoverflow](http://stackoverflow.com/questions/5657292/why-is-false-used-after-this-simple-addeventlistener-function) 
 - [x] `addEventerListern ` and `attachEvent` [Answer on stackoverflow](http://stackoverflow.com/questions/2657182/correct-usage-of-addeventlistener-attachevent) 
 - [x] `event.target` and `event.currentTarget` and `this` 
+
+### Week 5
+
+- [x] `offsetTop`不包含使用css中使用`transform:translate(dx,dy)`中的偏移量，而`getBoundingClientRect()`则包含了。
+- [x] 在使用`html2canvas`库的时候，务必保证其他代码中没有`Node`类。
