@@ -18,3 +18,4 @@
 
 - [x] `offsetTop`不包含使用css中使用`transform:translate(dx,dy)`中的偏移量，而`getBoundingClientRect()`则包含了。
 - [x] 在使用`html2canvas`库的时候，务必保证其他代码中没有`Node`类。
+- [x] 在使用`html2canvas`库中，内联的svg元素不会渲染到canvas中。
